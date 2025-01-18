@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "nkxoXEqejwan5LPFFyYgw74cCqvi0pymcVPoiWHEtVR+5OnXQ+uHMx/o7ORpxTJt104ObGRwLONm6DI9ONGDeQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\avlad\\projects\\SubscriptionManager\\SubscriptionManager\\SubscriptionManager\\SubscriptionManager.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\avlad\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.13\\microsoft.aspnetcore.openapi.7.0.13.nupkg.sha512",
+    "C:\\Users\\avlad\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\avlad\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\avlad\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\avlad\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\avlad\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\avlad\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
