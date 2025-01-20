@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using SubscriptionManager.Context;
 using SubscriptionManager.Models;
 using SubscriptionManager.Models.Requests;
+using SubscriptionManager.Services.Interfaces;
 
 namespace SubscriptionManager.Services;
 
-public class SubscriptionService
+public class SubscriptionService : ISubscriptionService
 {
     private readonly SubscriptionManagerContext _context;
     private readonly IUserContextService _userContextService;

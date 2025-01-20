@@ -10,13 +10,11 @@ public class User
     [Required] public string Email { get; set; }
     [Required] public List<Subscription> Subscriptions { get; set; } = new();
     [Required] public double PaidAmount { get; set; } = 0;
-    
+
     public void AddToPaidAmount(double paidAmount) => PaidAmount += paidAmount;
 
-    public void PaySubscription(int subscriptionId)
+    public void PaySubscription(Subscription subscription)
     {
-        var subscription = Subscriptions.SingleOrDefault(sub => sub.Id == subscriptionId);
-        
-        
+        AddToPaidAmount(subscription.Price);
     }
 }

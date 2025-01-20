@@ -1,10 +1,14 @@
 using System.Security.Claims;
 using System.Text;
+using BasicAuth.Services;
+using BasicAuth.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SubscriptionManager.Context;
+using SubscriptionManager.Services;
+using SubscriptionManager.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +25,10 @@ builder.Services.AddDbContext<SubscriptionManagerContext>(options =>
                          throw new InvalidOperationException(
                              "Connection string 'subscription-manager-context' not found.")));
 // }
+
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 //Works for users having multiple roles. looks through all of them and checks if the user has the required one
 builder.Services.AddAuthorization(options =>

@@ -1,15 +1,16 @@
-﻿using TimeSpan = SubscriptionManager.Models.Enums.TimeSpan;
+﻿using System.ComponentModel.DataAnnotations;
+using TimeSpan = SubscriptionManager.Models.Enums.TimeSpan;
 
 namespace SubscriptionManager.Models;
 
 public class Subscription
 {
     public int Id { get; set; }
-    public int UserId { get; set; }
-    public string Name { get; set; }
-    public double Price { get; set; }
-    public TimeSpan TimeSpan { get; set; }
-    public DateTime PayTime { get; set; }
+    [Required] public int UserId { get; set; }
+    [Required] public string Name { get; set; }
+    [Required] public double Price { get; set; }
+    [Required] public TimeSpan TimeSpan { get; set; }
+    [Required] private DateTime PayTime { get; set; }
 
     public void UpdateNextPayTime()
     {
