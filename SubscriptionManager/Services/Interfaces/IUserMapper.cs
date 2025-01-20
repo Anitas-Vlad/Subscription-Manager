@@ -1,5 +1,6 @@
 using BasicAuth.Models;
 using BasicAuth.Models.Responses;
+using SubscriptionManager.Models;
 
 namespace BasicAuth.Services.Interfaces;
 

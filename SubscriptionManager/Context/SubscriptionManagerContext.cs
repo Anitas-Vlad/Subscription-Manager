@@ -1,5 +1,6 @@
 ﻿using BasicAuth.Models;
 using Microsoft.EntityFrameworkCore;
+using SubscriptionManager.Models;
 
 namespace SubscriptionManager.Context;
 
@@ -15,6 +16,7 @@ public class SubscriptionManagerContext : DbContext
     }
 
     public DbSet<User> Users { get; set; } = default!;
+    public DbSet<Subscription> Subscriptions { get; set; } = default!;
 
     private static class ModelBuilderExtensions
     {

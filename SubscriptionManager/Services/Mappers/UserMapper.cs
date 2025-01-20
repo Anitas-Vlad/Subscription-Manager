@@ -1,6 +1,7 @@
 using BasicAuth.Models;
 using BasicAuth.Models.Responses;
 using BasicAuth.Services.Interfaces;
+using SubscriptionManager.Models;
 
 namespace BasicAuth.Services.Mappers;
 

@@ -5,6 +5,7 @@ using BasicAuth.Models.Responses;
 using BasicAuth.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using SubscriptionManager.Context;
+using SubscriptionManager.Models;
 
 namespace BasicAuth.Services;
 

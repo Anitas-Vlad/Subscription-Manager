@@ -2,6 +2,7 @@
 using BasicAuth.Models.Requests;
 using BasicAuth.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using SubscriptionManager.Models;
 
 namespace BasicAuth.Controllers;
 

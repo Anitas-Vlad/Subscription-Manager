@@ -4,6 +4,7 @@ using System.Text;
 using BasicAuth.Models;
 using BasicAuth.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
+using SubscriptionManager.Models;
 
 namespace BasicAuth.Services;
 
