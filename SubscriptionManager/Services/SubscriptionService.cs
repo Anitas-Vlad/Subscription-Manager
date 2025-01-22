@@ -1,6 +1,4 @@
-﻿using BasicAuth.Models.Requests;
-using BasicAuth.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SubscriptionManager.Context;
 using SubscriptionManager.Models;
 using SubscriptionManager.Models.Requests;
@@ -35,6 +33,7 @@ public class SubscriptionService : ISubscriptionService
         {
             Name = request.Name,
             Price = request.Price,
+            UserId = request.UserId,
             TimeSpan = request.TimeSpan
         };
         
@@ -42,12 +41,9 @@ public class SubscriptionService : ISubscriptionService
         return subscription;
     }
 
-    public async Task RemoveSubscription(int subscriptionId)
+    public void RemoveSubscription(Subscription subscription) //TODO Only have access to your own subscriptions
     {
-        var subscription = await QuerySubscriptionById(subscriptionId);
-        
         _context.Subscriptions.Remove(subscription);
-        
-        await _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 }

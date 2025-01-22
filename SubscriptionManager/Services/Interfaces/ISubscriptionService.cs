@@ -7,5 +7,5 @@ public interface ISubscriptionService
 {
     Task<Subscription> QuerySubscriptionById(int subscriptionId);
     public Subscription CreateSubscription(CreateSubscriptionRequest request);
-    Task RemoveSubscription(int subscriptionId);
+    void RemoveSubscription(Subscription subscription);
 }

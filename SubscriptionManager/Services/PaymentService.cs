@@ -1,4 +1,4 @@
-﻿using BasicAuth.Services.Interfaces;
+﻿using SubscriptionManager.Services.Interfaces;
 
 namespace SubscriptionManager.Services;
 

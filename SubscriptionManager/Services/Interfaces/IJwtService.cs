@@ -1,7 +1,6 @@
-﻿using BasicAuth.Models;
-using SubscriptionManager.Models;
+﻿using SubscriptionManager.Models;
 
-namespace BasicAuth.Services.Interfaces;
+namespace SubscriptionManager.Services.Interfaces;
 
 public interface IJwtService
 {

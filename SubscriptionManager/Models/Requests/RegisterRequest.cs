@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BasicAuth.Models.Requests;
+namespace SubscriptionManager.Models.Requests;
 
 public class RegisterRequest
 {

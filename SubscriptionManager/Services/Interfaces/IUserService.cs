@@ -1,9 +1,8 @@
-﻿using BasicAuth.Models;
-using BasicAuth.Models.Requests;
-using BasicAuth.Models.Responses;
-using SubscriptionManager.Models;
+﻿using SubscriptionManager.Models;
+using SubscriptionManager.Models.Requests;
+using SubscriptionManager.Models.Responses;
 
-namespace BasicAuth.Services.Interfaces;
+namespace SubscriptionManager.Services.Interfaces;
 
 public interface IUserService
 {

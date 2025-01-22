@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BasicAuth.Models.Responses;
+namespace SubscriptionManager.Models.Responses;
 
 public class UserResponse
 {

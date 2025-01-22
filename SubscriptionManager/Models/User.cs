@@ -9,12 +9,27 @@ public class User
     [Required] public string PasswordHash { get; set; }
     [Required] public string Email { get; set; }
     [Required] public List<Subscription> Subscriptions { get; set; } = new();
+    [Required] public List<Subscription> CancelledSubscriptions { get; set; } = new();
+
+    [Required] public List<Payment> Payments { get; set; } = new();
     [Required] public double PaidAmount { get; set; } = 0;
 
-    public void AddToPaidAmount(double paidAmount) => PaidAmount += paidAmount;
+    public void PaySubscription(Subscription subscription) // TODO Create/Add Payment
+        => throw new NotImplementedException();
 
-    public void PaySubscription(Subscription subscription)
+    public Subscription? GetSubscriptionId(int subscriptionId)
+        => Subscriptions.FirstOrDefault(s => s.Id == subscriptionId);
+
+    public void AddSubscription(Subscription subscription)
     {
-        AddToPaidAmount(subscription.Price);
+        subscription.UserId = Id;
+        Subscriptions.Add(subscription);
+    }
+
+    public void CancelSubscription(Subscription subscription)
+    {
+        subscription.Active = false;
+        Subscriptions.Remove(subscription);
+        CancelledSubscriptions.Add(subscription);
     }
 }

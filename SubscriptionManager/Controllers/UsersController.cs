@@ -1,11 +1,10 @@
-﻿using BasicAuth.Models;
-using BasicAuth.Models.Responses;
-using BasicAuth.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SubscriptionManager.Models;
+using SubscriptionManager.Models.Responses;
+using SubscriptionManager.Services.Interfaces;
 
-namespace BasicAuth.Controllers;
+namespace SubscriptionManager.Controllers;
 
 [Authorize]
 [ApiController]

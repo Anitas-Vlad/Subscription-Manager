@@ -1,8 +1,7 @@
-using BasicAuth.Models;
-using BasicAuth.Models.Responses;
 using SubscriptionManager.Models;
+using SubscriptionManager.Models.Responses;
 
-namespace BasicAuth.Services.Interfaces;
+namespace SubscriptionManager.Services.Interfaces;
 
 public interface IUserMapper
 {

@@ -1,6 +1,6 @@
-﻿using BasicAuth.Models.Requests;
+﻿using SubscriptionManager.Models.Requests;
 
-namespace BasicAuth.Services.Interfaces;
+namespace SubscriptionManager.Services.Interfaces;
 
 public interface IAuthService
 {

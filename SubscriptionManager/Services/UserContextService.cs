@@ -1,7 +1,7 @@
 using System.Security.Claims;
-using BasicAuth.Services.Interfaces;
+using SubscriptionManager.Services.Interfaces;
 
-namespace BasicAuth.Services;
+namespace SubscriptionManager.Services;
 
 public class UserContextService : IUserContextService
 {

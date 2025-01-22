@@ -9,16 +9,24 @@ public class Subscription
     [Required] public int UserId { get; set; }
     [Required] public string Name { get; set; }
     [Required] public double Price { get; set; }
+    [Required] public bool Active { get; set; } = true;
     [Required] public TimeSpan TimeSpan { get; set; }
-    [Required] private DateTime PayTime { get; set; }
+    [Required] private DateTime NextPayTime { get; set; }
+    private DateTime LastPayTime { get; set; }
 
-    public void UpdateNextPayTime()
+    private void UpdateNextPayTime()
     {
-        PayTime = TimeSpan switch
+        NextPayTime = TimeSpan switch
         {
-            TimeSpan.Weekly => PayTime.AddDays(7),
-            TimeSpan.Monthly => PayTime.AddMonths(1),
-            _ => PayTime
+            TimeSpan.Weekly => NextPayTime.AddDays(7),
+            TimeSpan.Monthly => NextPayTime.AddMonths(1),
+            _ => NextPayTime
         };
+    }
+
+    public void HandlePayment()
+    {
+        LastPayTime = DateTime.Now;
+        UpdateNextPayTime();
     }
 }

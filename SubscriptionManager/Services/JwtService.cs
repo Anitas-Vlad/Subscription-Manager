@@ -1,12 +1,11 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using BasicAuth.Models;
-using BasicAuth.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using SubscriptionManager.Models;
+using SubscriptionManager.Services.Interfaces;
 
-namespace BasicAuth.Services;
+namespace SubscriptionManager.Services;
 
 public class JwtService : IJwtService
 {

@@ -1,4 +1,4 @@
-namespace BasicAuth.Services.Interfaces;
+namespace SubscriptionManager.Services.Interfaces;
 
 public interface IUserContextService
 {

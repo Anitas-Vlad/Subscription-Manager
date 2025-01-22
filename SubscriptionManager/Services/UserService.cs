@@ -1,13 +1,12 @@
 ﻿using System.Text.RegularExpressions;
-using BasicAuth.Models;
-using BasicAuth.Models.Requests;
-using BasicAuth.Models.Responses;
-using BasicAuth.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using SubscriptionManager.Context;
 using SubscriptionManager.Models;
+using SubscriptionManager.Models.Requests;
+using SubscriptionManager.Models.Responses;
+using SubscriptionManager.Services.Interfaces;
 
-namespace BasicAuth.Services;
+namespace SubscriptionManager.Services;
 
 public class UserService : IUserService
 {
@@ -17,7 +16,8 @@ public class UserService : IUserService
     private readonly IUserContextService _userContextService;
     private readonly IUserMapper _userMapper;
 
-    public UserService(SubscriptionManagerContext context, IUserContextService userContextService, IUserMapper userMapper)
+    public UserService(SubscriptionManagerContext context, IUserContextService userContextService,
+        IUserMapper userMapper)
     {
         _context = context;
         _mailPattern = new("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
@@ -61,6 +61,7 @@ public class UserService : IUserService
         var userId = _userContextService.GetUserId();
 
         var user = await _context.Users
+            .Include(user => user.Subscriptions)
             .Where(user => user.Id == userId)
             .FirstOrDefaultAsync();
 
@@ -77,9 +78,6 @@ public class UserService : IUserService
         => await _context.Users
             .Where(user => user.Email == userEmail)
             .FirstOrDefaultAsync();
-
-    public async Task<User> QueryOwner()
-        => await _context.Users.FirstAsync(user => user.Email == "owner@gmail.com");
 
     public async Task<User> CreateUser(RegisterRequest request)
     {

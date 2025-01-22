@@ -1,10 +1,9 @@
-﻿using BasicAuth.Models;
-using BasicAuth.Models.Requests;
-using BasicAuth.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SubscriptionManager.Models;
+using SubscriptionManager.Models.Requests;
+using SubscriptionManager.Services.Interfaces;
 
-namespace BasicAuth.Controllers;
+namespace SubscriptionManager.Controllers;
 
 [ApiController]
 [Route("[controller]")]
