@@ -43,6 +43,11 @@ public class SubscriptionService : ISubscriptionService
 
     public void RemoveSubscription(Subscription subscription) //TODO Only have access to your own subscriptions
     {
+        var userId = _userContextService.GetUserId();
+
+        if (userId != subscription.UserId)
+            throw new ArgumentException("User is not subscribed to this subscription.");
+        
         _context.Subscriptions.Remove(subscription);
         _context.SaveChanges();
     }

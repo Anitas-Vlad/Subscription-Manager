@@ -1,0 +1,4 @@
+﻿TODO * Discount
+- Before paying, check if the Subscription has a repetitive Discount (x amount of months).
+- Before paying, check if the Subscription has a one time Discount (x amount off this payment).
+

@@ -10,6 +10,7 @@ public class Subscription
     [Required] public string Name { get; set; }
     [Required] public double Price { get; set; }
     [Required] public bool Active { get; set; } = true;
+    public Discount Discount { get; set; }
     [Required] public TimeSpan TimeSpan { get; set; }
     public DateTime LastPayTime { get; set; }
     [Required] public DateTime NextPayTime { get; set; }
@@ -26,7 +27,7 @@ public class Subscription
         };
     }
 
-    public void HandlePayment()
+    public void HandlePaymentDates() //TODO 
     {
         LastPayTime = DateTime.Now;
         UpdateNextPayTime();

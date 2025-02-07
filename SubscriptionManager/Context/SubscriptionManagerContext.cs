@@ -17,6 +17,7 @@ public class SubscriptionManagerContext : DbContext
     public DbSet<User> Users { get; set; } = default!;
     public DbSet<Subscription> Subscriptions { get; set; } = default!;
     public DbSet<Payment> Payments { get; set; } = default!;
+    public DbSet<Discount> Discounts { get; set; } = default!;
 
     private static class ModelBuilderExtensions
     {
