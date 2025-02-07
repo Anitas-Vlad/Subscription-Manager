@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using SubscriptionManager.Context;
 using SubscriptionManager.Services;
 using SubscriptionManager.Services.Interfaces;
+using SubscriptionManager.Services.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,12 +25,19 @@ builder.Services.AddDbContext<SubscriptionManagerContext>(options =>
                              "Connection string 'subscription-manager-context' not found.")));
 // }
 
-builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<IUserContextService, UserContextService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserSubscriptionsService, UserSubscriptionsService>();
+builder.Services.AddScoped<IPaymentsMapper, PaymentsMapper>();
+builder.Services.AddScoped<IUserMapper, UserMapper>();
+builder.Services.AddHttpContextAccessor();
 
 //Works for users having multiple roles. looks through all of them and checks if the user has the required one
-builder.Services.AddAuthorization(options =>
+builder.Services.AddAuthorization(options => //TODO Update. No Authorization Required
     {
         options.AddPolicy("User", policy =>
             policy.RequireAssertion(context =>

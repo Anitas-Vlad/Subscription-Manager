@@ -11,8 +11,10 @@ public class Subscription
     [Required] public double Price { get; set; }
     [Required] public bool Active { get; set; } = true;
     [Required] public TimeSpan TimeSpan { get; set; }
-    [Required] private DateTime NextPayTime { get; set; }
-    private DateTime LastPayTime { get; set; }
+    public DateTime LastPayTime { get; set; }
+    [Required] public DateTime NextPayTime { get; set; }
+
+    [Required] public List<Payment> Payments { get; set; } = new();
 
     private void UpdateNextPayTime()
     {
@@ -28,5 +30,13 @@ public class Subscription
     {
         LastPayTime = DateTime.Now;
         UpdateNextPayTime();
+    }
+
+    public List<Payment> GetPaymentsForThisMonth()
+        => Payments.Where(payment => payment.Date.Month == DateTime.Now.Month).ToList();
+    
+    public void CancelSubscription()
+    {
+        Active = false;
     }
 }

@@ -14,5 +14,5 @@ public class UserMapper : IUserMapper
         };
 
     public List<UserResponse> Map(List<User> users) 
-        => users.Select(user => Map(user)).ToList();
+        => users.Select(Map).ToList();
 }

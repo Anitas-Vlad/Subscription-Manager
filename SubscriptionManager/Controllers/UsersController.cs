@@ -6,7 +6,7 @@ using SubscriptionManager.Services.Interfaces;
 
 namespace SubscriptionManager.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("[controller]")]
 public class UsersController : ControllerBase
@@ -26,6 +26,6 @@ public class UsersController : ControllerBase
         => await _userService.QueryUserProfile(username);
     
     [HttpGet]
-    public async Task<ActionResult<List<User>>> GetAllUsers() 
+    public async Task<ActionResult<List<UserResponse>>> GetAllUsers() 
         => await _userService.QueryAllUsers();
 }

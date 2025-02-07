@@ -70,9 +70,8 @@ public class UserService : IUserService
         return user;
     }
 
-    public async Task<List<User>> QueryAllUsers() =>
-        await _context.Users
-            .ToListAsync();
+    public async Task<List<UserResponse>> QueryAllUsers() 
+        => _userMapper.Map(await _context.Users.ToListAsync());
 
     public async Task<User?> QueryUserByEmail(string userEmail)
         => await _context.Users
