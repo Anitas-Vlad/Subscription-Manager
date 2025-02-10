@@ -67,34 +67,35 @@ public class PaymentService : IPaymentService
                 _discountHandlingService.HandleNoDiscountPayment(payment, subscription);
                 break;
 
-            case DiscountType.FreeMonth:
-                _discountHandlingService.HandleFreeMonthDiscountPayment(payment, subscription);
+            case DiscountType.RecursiveFreeMonth:
+                _discountHandlingService.HandleRecursiveFreeMonthDiscountPayment(payment, subscription);
                 break;
 
-            case DiscountType.Off50PercentMonth:
-                _discountHandlingService.Handle50PercentOffMonthDiscountPayment(payment, subscription);
+            case DiscountType.RecursiveOff50PercentMonth:
+                _discountHandlingService.HandleRecursive50PercentOffMonthDiscountPayment(payment, subscription);
+                break;
+            
+            case DiscountType.RecursiveOff20PercentMonth: 
+                _discountHandlingService.HandleRecursive20PercentOffMonthDiscountPayment(payment, subscription);
                 break;
 
             case DiscountType.FreeOneTime:
                 _discountHandlingService.HandleOneTimeFreeMonthDiscountPayment(payment, subscription);
                 break;
 
-            case DiscountType.Off50PercentOneTime:
+            case DiscountType.OneTimeOff50Percent:
                 _discountHandlingService.HandleOneTime50PercentOffMonthDiscountPayment(payment, subscription);
                 break;
 
-            case DiscountType.Off20PercentOneTime: break;
-            case DiscountType.Off10PercentOneTime: break;
-            case DiscountType.Off20PercentMonth: break;
-            case DiscountType.Off10PercentMonth: break;
+            case DiscountType.OneTimeOff20Percent: 
+                _discountHandlingService.HandleOneTime20PercentOffMonthDiscountPayment(payment, subscription);
+                break;
+            
+            
             case DiscountType.FreeYear: break;
             case DiscountType.Off50PercentYear: break;
-            case DiscountType.Off20PercentYear: break;
-            case DiscountType.Off10PercentYear: break;
             case DiscountType.FreeWeek: break;
             case DiscountType.Off50PercentWeek: break;
-            case DiscountType.Off20PercentWeek: break;
-            case DiscountType.Off10PercentWeek: break;
             default:
                 throw new ArgumentOutOfRangeException("Unknown discount type.");
         }
