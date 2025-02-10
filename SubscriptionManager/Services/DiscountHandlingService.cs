@@ -14,7 +14,7 @@ public class DiscountHandlingService : IDiscountHandlingService
         _context = context;
     }
     
-    private void UpdateBasicPayment(Subscription subscription, Payment payment)
+    private static void UpdateBasePayment(Subscription subscription, Payment payment)
     {
         payment.SubscriptionId = subscription.Id;
         payment.Date = DateTime.Now;
@@ -28,10 +28,8 @@ public class DiscountHandlingService : IDiscountHandlingService
 
         payment.Amount = basePrice;
         payment.Discount = 0;
-        UpdateBasicPayment(subscription, payment);
+        UpdateBasePayment(subscription, payment);
 
-        _context.Subscriptions.Update(subscription);
-        _context.Payments.Add(payment);
         _context.Discounts.Update(discount);
     }
 
@@ -44,10 +42,8 @@ public class DiscountHandlingService : IDiscountHandlingService
         if (discount.Repetitions == 0) discount.Type = DiscountType.None;
         payment.Amount = 0;
         payment.Discount = basePrice;
-        UpdateBasicPayment(subscription, payment);
+        UpdateBasePayment(subscription, payment);
 
-        _context.Subscriptions.Update(subscription);
-        _context.Payments.Add(payment);
         _context.Discounts.Update(discount);
     }
 
@@ -59,10 +55,8 @@ public class DiscountHandlingService : IDiscountHandlingService
         if (discount.Repetitions == 0) discount.Type = DiscountType.None;
         payment.Amount = basePrice / 2;
         payment.Discount = basePrice / 2;
-        UpdateBasicPayment(subscription, payment);
+        UpdateBasePayment(subscription, payment);
 
-        _context.Subscriptions.Update(subscription);
-        _context.Payments.Add(payment);
         _context.Discounts.Update(discount);
     }
 
@@ -74,10 +68,8 @@ public class DiscountHandlingService : IDiscountHandlingService
         discount.Type = DiscountType.None;
         payment.Amount = basePrice/2;
         payment.Discount = basePrice/2;
-        UpdateBasicPayment(subscription, payment);
+        UpdateBasePayment(subscription, payment);
 
-        _context.Subscriptions.Update(subscription);
-        _context.Payments.Add(payment);
         _context.Discounts.Update(discount);
     }
     
@@ -89,10 +81,8 @@ public class DiscountHandlingService : IDiscountHandlingService
         discount.Type = DiscountType.None;
         payment.Amount = basePrice/2;
         payment.Discount = basePrice/2;
-        UpdateBasicPayment(subscription, payment);
+        UpdateBasePayment(subscription, payment);
 
-        _context.Subscriptions.Update(subscription);
-        _context.Payments.Add(payment);
         _context.Discounts.Update(discount);
     }
 }

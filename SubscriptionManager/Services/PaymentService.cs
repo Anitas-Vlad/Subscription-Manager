@@ -42,13 +42,25 @@ public class PaymentService : IPaymentService
         return _paymentsMapper.MapPaymentResponse(paymentsThisMonth);
     }
 
-    public async Task<Payment> PaySubscription(Subscription subscription) //TODO  
+    public async Task<Payment> PaySubscription(Subscription subscription)
+        //TODO check if it's better like this or find it with id
     {
         if (!subscription.Active)
             throw new ArgumentException("Subscription is not active.");
 
         var payment = new Payment();
 
+        ApplyDiscount(subscription, payment);
+
+        _context.Subscriptions.Update(subscription);
+        _context.Payments.Add(payment);
+        await _context.SaveChangesAsync();
+
+        return payment;
+    }
+
+    private void ApplyDiscount(Subscription subscription, Payment payment)
+    {
         switch (subscription.Discount.Type) //TODO Break into smaller method.
         {
             case DiscountType.None:
@@ -62,12 +74,15 @@ public class PaymentService : IPaymentService
             case DiscountType.Off50PercentMonth:
                 _discountHandlingService.Handle50PercentOffMonthDiscountPayment(payment, subscription);
                 break;
+
             case DiscountType.FreeOneTime:
                 _discountHandlingService.HandleOneTimeFreeMonthDiscountPayment(payment, subscription);
                 break;
+
             case DiscountType.Off50PercentOneTime:
                 _discountHandlingService.HandleOneTime50PercentOffMonthDiscountPayment(payment, subscription);
                 break;
+
             case DiscountType.Off20PercentOneTime: break;
             case DiscountType.Off10PercentOneTime: break;
             case DiscountType.Off20PercentMonth: break;
@@ -83,10 +98,5 @@ public class PaymentService : IPaymentService
             default:
                 throw new ArgumentOutOfRangeException("Unknown discount type.");
         }
-
-        subscription.HandlePaymentDates();
-
-        await _context.SaveChangesAsync();
-        return payment;
     }
 }
