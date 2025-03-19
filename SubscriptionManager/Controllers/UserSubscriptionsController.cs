@@ -29,4 +29,9 @@ public class UserSubscriptionsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<Subscription>>> GetSubscriptions()
         => await _userSubscriptionsService.GetSubscriptions();
+
+    [HttpPatch]
+    [Route("/subscriptions/{subscriptionId}/applyDiscount")]
+    public async Task ApplyDiscountToSubscription(DiscountRequest request)
+        => await _userSubscriptionsService.ApplyDiscountOnSubscription(request);
 }

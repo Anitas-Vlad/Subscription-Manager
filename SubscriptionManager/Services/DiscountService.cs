@@ -1,17 +1,30 @@
 ﻿using SubscriptionManager.Context;
 using SubscriptionManager.Models;
 using SubscriptionManager.Models.Enums;
+using SubscriptionManager.Models.Requests;
 using SubscriptionManager.Services.Interfaces;
 
 namespace SubscriptionManager.Services;
 
-public class DiscountHandlingService : IDiscountHandlingService
+public class DiscountService : IDiscountService
 {
     private readonly SubscriptionManagerContext _context;
 
-    public DiscountHandlingService(SubscriptionManagerContext context)
+    public DiscountService(SubscriptionManagerContext context)
     {
         _context = context;
+    }
+
+    public Discount CreateDiscount(DiscountRequest request)
+    {
+        var discount = new Discount()
+        {
+            SubscriptionId = request.SubscriptionId,
+            Repetitions = request.Repetitions,
+            Type = request.DiscountType
+        };
+        _context.Discounts.Add(discount);
+        return discount;
     }
 
     private static void UpdateBasePayment(Subscription subscription, Payment payment)

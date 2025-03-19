@@ -1,9 +1,11 @@
 ﻿using SubscriptionManager.Models;
+using SubscriptionManager.Models.Requests;
 
 namespace SubscriptionManager.Services.Interfaces;
 
-public interface IDiscountHandlingService
+public interface IDiscountService
 {
+    Discount CreateDiscount(DiscountRequest request);
     void HandleNoDiscountPayment(Payment payment, Subscription subscription);
     void HandleRecursiveFreeMonthDiscountPayment(Payment payment, Subscription subscription);
     void HandleRecursive50PercentOffMonthDiscountPayment(Payment payment, Subscription subscription);

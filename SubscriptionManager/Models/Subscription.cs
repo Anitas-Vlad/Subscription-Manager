@@ -27,6 +27,9 @@ public class Subscription
         };
     }
 
+    public void ApplyDiscount(Discount discount) 
+        => Discount = discount;
+
     public void HandlePaymentDates() //TODO 
     {
         LastPayTime = DateTime.Now;
@@ -35,9 +38,7 @@ public class Subscription
 
     public List<Payment> GetPaymentsForThisMonth()
         => Payments.Where(payment => payment.Date.Month == DateTime.Now.Month).ToList();
-    
-    public void CancelSubscription()
-    {
-        Active = false;
-    }
+
+    public void CancelSubscription() 
+        => Active = false;
 }

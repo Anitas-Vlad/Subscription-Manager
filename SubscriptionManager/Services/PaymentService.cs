@@ -10,19 +10,16 @@ public class PaymentService : IPaymentService
 {
     private readonly IUserService _userService;
     private readonly IPaymentsMapper _paymentsMapper;
-    private readonly ISubscriptionService _subscriptionService;
-    private readonly IDiscountHandlingService _discountHandlingService;
+    private readonly IDiscountService _discountService;
     private readonly SubscriptionManagerContext _context;
 
-    public PaymentService(IUserService userService, IPaymentsMapper paymentsMapper,
-        ISubscriptionService subscriptionService, SubscriptionManagerContext context,
-        IDiscountHandlingService discountHandlingService)
+    public PaymentService(IUserService userService, IPaymentsMapper paymentsMapper, SubscriptionManagerContext context,
+        IDiscountService discountService)
     {
         _userService = userService;
         _paymentsMapper = paymentsMapper;
         _context = context;
-        _discountHandlingService = discountHandlingService;
-        // _subscriptionService = subscriptionService;
+        _discountService = discountService;
     }
 
     public async Task<PaymentsResponse> GetPaymentsForThisMonth()
@@ -43,7 +40,7 @@ public class PaymentService : IPaymentService
     }
 
     public async Task<Payment> PaySubscription(Subscription subscription)
-        //TODO check if it's better like this or find it with id
+        //TODO Ask/Check if it's better like this or find it with id
     {
         if (!subscription.Active)
             throw new ArgumentException("Subscription is not active.");
@@ -64,31 +61,31 @@ public class PaymentService : IPaymentService
         switch (subscription.Discount.Type) //TODO Break into smaller method.
         {
             case DiscountType.None:
-                _discountHandlingService.HandleNoDiscountPayment(payment, subscription);
+                _discountService.HandleNoDiscountPayment(payment, subscription);
                 break;
 
             case DiscountType.RecursiveFreeMonth:
-                _discountHandlingService.HandleRecursiveFreeMonthDiscountPayment(payment, subscription);
+                _discountService.HandleRecursiveFreeMonthDiscountPayment(payment, subscription);
                 break;
 
             case DiscountType.RecursiveOff50PercentMonth:
-                _discountHandlingService.HandleRecursive50PercentOffMonthDiscountPayment(payment, subscription);
+                _discountService.HandleRecursive50PercentOffMonthDiscountPayment(payment, subscription);
                 break;
             
             case DiscountType.RecursiveOff20PercentMonth: 
-                _discountHandlingService.HandleRecursive20PercentOffMonthDiscountPayment(payment, subscription);
+                _discountService.HandleRecursive20PercentOffMonthDiscountPayment(payment, subscription);
                 break;
 
             case DiscountType.FreeOneTime:
-                _discountHandlingService.HandleOneTimeFreeMonthDiscountPayment(payment, subscription);
+                _discountService.HandleOneTimeFreeMonthDiscountPayment(payment, subscription);
                 break;
 
             case DiscountType.OneTimeOff50Percent:
-                _discountHandlingService.HandleOneTime50PercentOffMonthDiscountPayment(payment, subscription);
+                _discountService.HandleOneTime50PercentOffMonthDiscountPayment(payment, subscription);
                 break;
 
             case DiscountType.OneTimeOff20Percent: 
-                _discountHandlingService.HandleOneTime20PercentOffMonthDiscountPayment(payment, subscription);
+                _discountService.HandleOneTime20PercentOffMonthDiscountPayment(payment, subscription);
                 break;
             
             

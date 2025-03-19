@@ -9,14 +9,16 @@ public class UserSubscriptionsService : IUserSubscriptionsService
 {
     private readonly IUserService _userService;
     private readonly ISubscriptionService _subscriptionService;
+    private readonly IDiscountService _discountService;
     private readonly SubscriptionManagerContext _context;
 
     public UserSubscriptionsService(SubscriptionManagerContext context, IUserService userService,
-        ISubscriptionService subscriptionService)
+        ISubscriptionService subscriptionService, IDiscountService discountService)
     {
         _context = context;
         _userService = userService;
         _subscriptionService = subscriptionService;
+        _discountService = discountService;
     }
 
     public async Task CancelSubscription(int subscriptionId)
@@ -46,6 +48,19 @@ public class UserSubscriptionsService : IUserSubscriptionsService
         await _context.SaveChangesAsync();
 
         return subscription;
+    }
+
+    public async Task ApplyDiscountOnSubscription(DiscountRequest request)
+    {
+        var subscription = await _subscriptionService.QuerySubscriptionById(request.SubscriptionId);
+        var discount = _discountService.CreateDiscount(request);
+
+        subscription.ApplyDiscount(discount);
+        
+        _context.Subscriptions.Update(subscription);
+        _context.Discounts.Update(discount);
+
+        await _context.SaveChangesAsync();
     }
 
     public async Task<List<Subscription>> GetSubscriptions()
